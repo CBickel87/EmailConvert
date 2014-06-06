@@ -32,8 +32,10 @@ namespace EmailConvert
                 var names = s1.Split(',');
                 string lastname = names[0];
                 string firstname = names[1];
+                textBox2.Text = (firstname + "." + lastname + "@email.com");
+
                 //listBox1.Items.Add(string.Join(Environment.NewLine, names));
-                listBox1.Items.Add(string.Join(Environment.NewLine, firstname + "." + lastname + "@email.com"));
+                //listBox1.Items.Add(string.Join(Environment.NewLine, firstname + "." + lastname + "@email.com"));
             }
             //{
             //string fullname = textBox1.Text;
