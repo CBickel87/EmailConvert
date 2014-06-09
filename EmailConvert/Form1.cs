@@ -53,8 +53,8 @@ namespace EmailConvert
                 {
                     // do whatever here - "found" is of type "Principal" - it could be user, group, computer.....
                     //MessageBox.Show(found.UserPrincipalName);
-
-                    textBox2.Text = found.UserPrincipalName;
+                    //textBox2.Text = found.UserPrincipalName;
+                    //Clipboard.SetText(found.UserPrincipalName);
 
                 }
 
