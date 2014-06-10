@@ -22,7 +22,7 @@ namespace EmailConvert
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox2.Clear();
+            richTextBox1.Clear();
             char[] delimiterChars = new Char[] {';'};
             string[] words = textBox1.Text.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 
@@ -31,46 +31,50 @@ namespace EmailConvert
                     var names = s.Trim().Split(',');
                     string lastname = names[0];
                     string firstname = names[1];
-                    textBox2.Text += (firstname + "." + lastname + "@email.com" + "\r\n");
+
+                    //If user has middle initial in name layout. It removes it to prevent mismatch
+                    if (firstname.Contains('.'))
+                        firstname = firstname.Substring(0, firstname.LastIndexOf(' '));
+
+                    ////This was for testing without being on the AD.
+                    //richTextBox1.Text += (firstname + "." + lastname + "@email.com" + "\r\n");
                     //MessageBox.Show(firstname + "." + lastname + "@email.com");
 
-                    //// create your domain context
-                    //PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
+                    /// <summary> 
+                    /// The code for querying AD was taken from marc_s @:
+                    /// http://stackoverflow.com/questions/9603878/how-can-i-search-users-in-active-directory-based-on-name-and-first-name
+                    /// </summary>
+                     
+                    // create your domain context
+                    PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
 
-                    //// define a "query-by-example" principal - here, we search for a UserPrincipal 
-                    //// and with the first name (GivenName) of "Bruce" and a last name (Surname) of "Miller"
-                    //UserPrincipal qbeUser = new UserPrincipal(ctx);
-                    //qbeUser.GivenName = names[1];
-                    //qbeUser.Surname = names[0];
+                    // define a "query-by-example" principal - here, we search for a UserPrincipal 
+                    // and with the first name (GivenName) of "Bruce" and a last name (Surname) of "Miller"
+                    UserPrincipal qbeUser = new UserPrincipal(ctx);
+                    qbeUser.GivenName = firstname;
+                    qbeUser.Surname = lastname;
 
-                    //// create your principal searcher passing in the QBE principal    
-                    //PrincipalSearcher srch = new PrincipalSearcher(qbeUser);
+                    // create your principal searcher passing in the QBE principal    
+                    PrincipalSearcher srch = new PrincipalSearcher(qbeUser);
 
-                    //// find all matches
-                    //foreach (var found in srch.FindAll())
-                    //{
-                    //    // do whatever here - "found" is of type "Principal" - it could be user, group, computer.....
-                    //    //MessageBox.Show(found.UserPrincipalName);
-                    //    textBox2.Text += found.UserPrincipalName + "\r\n";
-                    //    //Clipboard.SetText += (found.UserPrincipalName);
-
-                    //}
+                    // find all matches
+                    foreach (var found in srch.FindAll())
+                    {
+                        // do whatever here - "found" is of type "Principal" - it could be user, group, computer.....
+                        //Prints to richTextbox1 and copies it all to clipboard at the same time
+                        richTextBox1.Text += found.UserPrincipalName + "\r\n";
+                        
+                        //Not working right now.
+                        //Clipboard.SetText(richTextBox1.Text, TextDataFormat.Rtf);
+                    }
                 }
                 
            }
 
-        ////Trying to add Ctr+A shortcut to select all. Defaults off for multiline txtboxes
-        //private void textBox2_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.Control && e.KeyCode == Keys.A)
-        //    {
-        //        textBox2.SelectAll();
-        //    }
-        //}
-
+        //Click clear button and clears richtextbox1
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox2.Clear();
+            richTextBox1.Clear();
         }
 
     }
