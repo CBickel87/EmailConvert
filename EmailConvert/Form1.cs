@@ -24,9 +24,12 @@ namespace EmailConvert
         {
             textBox2.Clear();
             textBox3.Clear();
+            //Splitting and removing ; character also remove empty entries to prevent crashes.
             char[] delimiterChars = new Char[] { ';' };
             string[] words = textBox1.Text.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 
+            //Split further by commas and remove spaces from the entry.
+            //Distinguish First and Lastnames and set those into variables
             foreach (string s in words)
             {
                 var names = s.Trim().Split(',');
@@ -37,15 +40,10 @@ namespace EmailConvert
                 if (firstname.Contains('.'))
                     firstname = firstname.Substring(0, firstname.LastIndexOf(' '));
 
-                    ////This was for testing without being on the AD.
-                    //richTextBox1.Text += (firstname + "." + lastname + "@email.com" + "\r\n");
-                    //MessageBox.Show(firstname + "." + lastname + "@email.com");
-
-                    /// <summary> 
-                    /// The code for querying AD was taken from marc_s @:
-                    /// http://stackoverflow.com/questions/9603878/how-can-i-search-users-in-active-directory-based-on-name-and-first-name
-                    /// </summary>
-
+                /// <summary> 
+                /// The code for querying AD was taken from marc_s @:
+                /// http://stackoverflow.com/questions/9603878/how-can-i-search-users-in-active-directory-based-on-name-and-first-name
+                /// </summary>
 
                 // create your domain context
                 PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
@@ -73,7 +71,7 @@ namespace EmailConvert
                         textBox2.Text += found.UserPrincipalName + "\r\n";
                     }
 
-                   Clipboard.SetText(textBox2.Text);
+                    Clipboard.SetText(textBox2.Text);
                 }
 
                 }
