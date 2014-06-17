@@ -66,7 +66,7 @@ namespace EmailConvert
                     //Prints to richTextbox1 and copies it all to clipboard at the same time
                     if (found.UserPrincipalName.Contains(" "))
                     {
-                        textBox3.Text += found.UserPrincipalName + "\r\n";
+                        textBox3.Text += found.DisplayName + "\r\n";
                     }
                     else
                     {
