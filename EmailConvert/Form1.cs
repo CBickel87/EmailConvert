@@ -25,7 +25,7 @@ namespace EmailConvert
             textBox2.Clear();
             textBox3.Clear();
             //Splitting and removing ; character also remove empty entries to prevent crashes.
-            char[] delimiterChars = new Char[] { ';' };
+            char[] delimiterChars = new Char[] {';'};
             string[] words = textBox1.Text.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 
             //Split further by commas and remove spaces from the entry.
