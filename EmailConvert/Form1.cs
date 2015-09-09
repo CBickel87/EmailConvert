@@ -22,8 +22,12 @@ namespace EmailConvert
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try {
             textBox2.Clear();
             textBox3.Clear();
+            textBox2.CharacterCasing = CharacterCasing.Lower;
+            textBox3.CharacterCasing = CharacterCasing.Lower;
+
             //Splitting and removing ; character also remove empty entries to prevent crashes.
             char[] delimiterChars = new Char[] {';'};
             string[] words = textBox1.Text.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
@@ -32,11 +36,12 @@ namespace EmailConvert
             //Distinguish First and Lastnames and set those into variables
             foreach (string s in words)
             {
-                var names = s.Trim().Split(',');
-                string lastname = names[0];
-                string firstname = names[1];
+                    var names = s.Trim().Split(',');
+                    string lastname = names[0];
+                    string firstname = names[1];
 
                 //If user has middle initial in name layout. It removes it to prevent mismatch
+                //TODO : This was a temp fix so it would work. I'll come back and fix this.
                 if (firstname.Contains('.'))
                     firstname = firstname.Substring(0, firstname.LastIndexOf(' '));
 
@@ -77,6 +82,14 @@ namespace EmailConvert
                 }
                 
            }
+            //Catch those pesky exceptions
+            catch
+            {
+                MessageBox.Show("Make sure the format is Lastname, Firstname;" + "\r\n" + "Each new user must end with a semi colon"
+                    + "\r\n" + "Distrobution groups cannot be used", "Check Formatting");
+            }
+        }
+
 
         //Click clear button and clears richtextbox1
         private void button2_Click(object sender, EventArgs e)
