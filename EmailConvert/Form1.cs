@@ -24,9 +24,7 @@ namespace EmailConvert
         {
             try {
             textBox2.Clear();
-            textBox3.Clear();
             textBox2.CharacterCasing = CharacterCasing.Lower;
-            textBox3.CharacterCasing = CharacterCasing.Lower;
 
             //Splitting and removing ; character also remove empty entries to prevent crashes.
             char[] delimiterChars = new Char[] {';'};
@@ -65,13 +63,6 @@ namespace EmailConvert
                 // find all matches
                 foreach (var found in srch.FindAll())
                 {
-                    // do whatever here - "found" is of type "Principal" - it could be user, group, computer.....
-                    //Prints to richTextbox1 and copies it all to clipboard at the same time
-                    if (found.UserPrincipalName.Contains(" "))
-                    {
-                        textBox3.Text += found.DisplayName + "\r\n";
-                    }
-                    else
                     {
                         textBox2.Text += found.UserPrincipalName + "\r\n";
                     }
@@ -95,7 +86,6 @@ namespace EmailConvert
         private void button2_Click(object sender, EventArgs e)
         {
             textBox2.Clear();
-            textBox3.Clear();
         }
 
     }
