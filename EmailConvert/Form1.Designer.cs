@@ -34,6 +34,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+<<<<<<< HEAD
+=======
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+>>>>>>> 1f7d118f688e9e1fc367be385ac32ecfc9ed8ef6
             this.SuspendLayout();
             // 
             // textBox1
@@ -68,6 +73,8 @@
             this.textBox2.Location = new System.Drawing.Point(13, 86);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(237, 318);
             this.textBox2.TabIndex = 5;
             // 
@@ -79,6 +86,26 @@
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Addresses";
+<<<<<<< HEAD
+=======
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(354, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Failed addresses";
+>>>>>>> 1f7d118f688e9e1fc367be385ac32ecfc9ed8ef6
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(278, 86);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(237, 318);
+            this.textBox3.TabIndex = 6;
             // 
             // Form1
             // 
@@ -107,6 +134,11 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
+<<<<<<< HEAD
+=======
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox3;
+>>>>>>> 1f7d118f688e9e1fc367be385ac32ecfc9ed8ef6
     }
 }
 

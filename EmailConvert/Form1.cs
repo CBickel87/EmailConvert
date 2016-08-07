@@ -76,8 +76,10 @@ namespace EmailConvert
             //Catch those pesky exceptions
             catch
             {
-                MessageBox.Show("Make sure the format is Lastname, Firstname;" + "\r\n" + "Each new user must end with a semi colon"
-                    + "\r\n" + "Distrobution groups cannot be used", "Check Formatting");
+                MessageBox.Show("Make sure the format is Lastname, Firstname;" + 
+                    "\r\n" + "Each new user must end with a semi colon." +
+                    "\r\n" + "Distrobution groups cannot be used." +
+                    "\r\n" + "This will only work on an AD network.", "Check Formatting");
             }
         }
 
